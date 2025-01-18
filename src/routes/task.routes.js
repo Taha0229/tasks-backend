@@ -1,14 +1,28 @@
 import { Router } from "express";
-import { getAllTasks, createTask } from "../controllers/task.controller.js";
+import {
+  getAllTasks,
+  createTask,
+  getTaskById,
+  updateTaskFull,
+  updateTaskPartial,
+  deleteTask,
+} from "../controllers/task.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-// secured routes
-router.route("/task").post(verifyJWT, createTask);
-router.route("/tasks").get(verifyJWT, getAllTasks);
-router.route("/task/:taskId").get();
-router.route("/task/:taskId").patch();
-router.route("/task/:taskId").put();
+// securing all the routes
+router.use(verifyJWT);
+
+// Task routes
+router.route("/tasks").get(getAllTasks);
+router.route("/task").post(createTask);
+
+router
+  .route("/task/:taskId")
+  .get(getTaskById) // Get a specific task
+  .patch(updateTaskPartial) // Partially update a task
+  .put(updateTaskFull) // Fully update a task
+  .delete(deleteTask); // Delete a task
 
 export default router;

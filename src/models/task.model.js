@@ -34,7 +34,7 @@ const taskSchema = new Schema(
       },
       default: "pending",
     },
-    
+
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: "User",
