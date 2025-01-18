@@ -5,6 +5,9 @@ dotenv.config({
     path: './.env'
 })
 
+app.get("/", (req, res) => {
+    res.send(new ApiResponse(200, [], "Welcome to the root route!"));
+  });
 
 
 connectDB()
