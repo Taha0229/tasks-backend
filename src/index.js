@@ -1,6 +1,8 @@
 import dotenv from "dotenv"
 import connectDB from "./db/index.js";
 import {app} from './app.js'
+import { ApiResponse } from "./utils/ApiResponse.js";
+
 dotenv.config({
     path: './.env'
 })
