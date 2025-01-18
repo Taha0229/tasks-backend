@@ -7,7 +7,7 @@
 This project mainly focuses on production grade practices namely best coding practices, project structure, utils, naming conventions, and more. The API is a simple implementation of task management system.
 
 **Access the deployed API from [here](https://tasks-backend-g3rjxrwug-tahas-projects-7dcb9fb9.vercel.app/)**
-**Access the Postman collection from [here]()** 
+**Access the Postman collection from [here](https://documenter.getpostman.com/view/23795224/2sAYQamrb9)** 
 
 ## Tech-stack
 
@@ -68,7 +68,7 @@ The API mainly has a root route and two groups of routes i.e. `user` routes and 
    5. **[PATCH]** Update one or more entries in the task aka partial update: `{{base}}/task/:taskId`
    6. **[DELETE]** Delete a task: `{{base}}/task/:taskId`
 
-**For further information, check out the `postman` collection, [here]("http://www.google.com)**
+**For further information, check out the `postman` collection, [here]("https://documenter.getpostman.com/view/23795224/2sAYQamrb9)**
   
 ## How to run Locally?
 
