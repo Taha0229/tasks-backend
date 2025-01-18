@@ -8,6 +8,14 @@ const getAllTasks = asyncHandler(async (req, res) => {
   const user = req.user;
   const allTasks = await Task.find({ createdBy: user._id });
 
+  if (!allTasks.length > 0) {
+    return res
+      .status(404)
+      .json(
+        new ApiResponse(404, [], "No tasks found, please create a new task")
+      );
+  }
+
   return res
     .status(200)
     .json(
@@ -49,7 +57,7 @@ const getTaskById = asyncHandler(async (req, res) => {
   const { taskId } = req.params;
   const user = req.user;
 
-  const task = await Task.findOne({ taskId, createdBy: user._id });
+  const task = await Task.findOne({ _id: taskId, createdBy: user._id });
 
   if (!task) {
     throw new ApiError(404, `Task with ID ${taskId} not found`);
@@ -76,7 +84,7 @@ const updateTaskPartial = asyncHandler(async (req, res) => {
   }
 
   const updatedTask = await Task.findOneAndUpdate(
-    { taskId, createdBy: user._id },
+    { _id: taskId, createdBy: user._id },
     { $set: req.body },
     { new: true, runValidators: true }
   );
@@ -112,7 +120,7 @@ const updateTaskFull = asyncHandler(async (req, res) => {
   }
 
   const updatedTask = await Task.findOneAndUpdate(
-    { taskId, createdBy: user._id },
+    { _id: taskId, createdBy: user._id },
     { title, description, status },
     { new: true, runValidators: true }
   );
@@ -140,7 +148,7 @@ const deleteTask = asyncHandler(async (req, res) => {
   const user = req.user;
 
   const deletedTask = await Task.findOneAndDelete({
-    taskId,
+    _id: taskId,
     createdBy: user._id,
   });
 

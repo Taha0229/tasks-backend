@@ -5,11 +5,6 @@ const AutoIncrement = mongooseSequence(mongoose);
 
 const taskSchema = new Schema(
   {
-    taskId: {
-      type: Number,
-      unique: true,
-    },
-
     title: {
       type: String,
       required: [true, "Title is a required field"],
@@ -43,7 +38,5 @@ const taskSchema = new Schema(
   },
   { timestamps: true }
 );
-
-taskSchema.plugin(AutoIncrement, { inc_field: "taskId" });
 
 export const Task = mongoose.model("Task", taskSchema);
